@@ -3,9 +3,11 @@ import time
 import atexit
 from utils import getValidatedInput, positiveIntValidator, yesOrNoValidator
 
+LED_PIN = 36
+
 def init():
   GPIO.setmode(GPIO.BOARD)
-  GPIO.setup(37, GPIO.OUT)
+  GPIO.setup(LED_PIN, GPIO.OUT)
   atexit.register(exitHandler)
 
 def exitHandler():
@@ -13,7 +15,7 @@ def exitHandler():
   GPIO.cleanup()
 
 def setLight(value):
-  GPIO.output(37, value)
+  GPIO.output(LED_PIN, value)
 
 init()
 
