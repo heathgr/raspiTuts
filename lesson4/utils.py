@@ -1,15 +1,11 @@
 def getValidatedInput(message, errmessage, validator):
-  value = None
-
-  while value == None:
+  while True:
     validated = validator(input(message))
 
     if validated != None:
-      value = validated
+      return validated
     if validated == None:
       print(f"\033[91m{errmessage}\033[00m")
-  
-  return value
 
 def positiveIntValidator(value):
   try:
