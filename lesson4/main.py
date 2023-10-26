@@ -13,7 +13,7 @@ def exitHandler():
   GPIO.cleanup()
 
 def setLight(value):
-  GPIO.output(11, value)
+  GPIO.output(37, value)
 
 init()
 
