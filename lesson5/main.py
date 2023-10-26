@@ -27,18 +27,25 @@ def exitHandler():
 def setLight(led, value):
   GPIO.output(led, value)
 
+def intToBinaryArray(value):
+  x = value
+  result = [0] * 5
+  
+  for i in range(0, 5):
+    result[4 - i] = floor(x % 2)
+    x = x * 0.5
+
+  return result
+
 init()
 
-setLight(LED_0, True)
-setLight(LED_1, True)
-setLight(LED_2, True)
-setLight(LED_3, True)
-setLight(LED_4, True)
-
-sleep(3)
-
-setLight(LED_0, False)
-setLight(LED_1, False)
-setLight(LED_2, False)
-setLight(LED_3, False)
-setLight(LED_4, False)
+while True:
+  for i in range(0, 32):
+    ledStates = intToBinaryArray(i)
+    
+    setLight(LED_0, ledStates[0])
+    setLight(LED_1, ledStates[1])
+    setLight(LED_2, ledStates[2])
+    setLight(LED_3, ledStates[3])
+    setLight(LED_4, ledStates[4])
+    sleep(1)
