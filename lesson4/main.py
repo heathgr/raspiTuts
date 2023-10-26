@@ -5,7 +5,7 @@ from utils import getValidatedInput, positiveIntValidator, yesOrNoValidator
 
 def init():
   GPIO.setmode(GPIO.BOARD)
-  GPIO.setup(11, GPIO.OUT)
+  GPIO.setup(37, GPIO.OUT)
   atexit.register(exitHandler)
 
 def exitHandler():
