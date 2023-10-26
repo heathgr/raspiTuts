@@ -30,9 +30,9 @@ def setLight(led, value):
 def intToBinaryArray(value):
   x = value
   result = [0] * 5
-  
+
   for i in range(0, 5):
-    result[4 - i] = floor(x % 2)
+    result[i] = floor(x % 2)
     x = x * 0.5
 
   return result
