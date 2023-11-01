@@ -11,6 +11,7 @@ LED_0 = 29
 def init():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(SWITCH, GPIO.IN)
+    GPIO.setup(LED_0, GPIO.OUT)
     atexit.register(exitHandler)
 
 
