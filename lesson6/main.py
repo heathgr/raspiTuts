@@ -4,8 +4,8 @@ import RPi.GPIO as GPIO
 import atexit
 from time import sleep
 
-SWITCH = 23
-LED_0 = 29
+SWITCH = 40
+LED_0 = 38
 
 
 def init():
