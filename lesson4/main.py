@@ -3,7 +3,7 @@ import time
 import atexit
 from utils import getValidatedInput, positiveIntValidator, yesOrNoValidator
 
-LED_PIN = 35
+LED_PIN = 29
 
 def init():
   GPIO.setmode(GPIO.BOARD)

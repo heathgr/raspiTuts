@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import atexit
 from time import sleep
 
-SWITCH = 27
+SWITCH = 23
 
 
 def init():
