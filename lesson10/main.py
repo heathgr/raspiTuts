@@ -22,16 +22,18 @@ atexit.register(exitHandler)
 
 pwmAgent = GPIO.PWM(LED_0, 2000)
 ledState = 0
+upState = 0
+downState = 0
 
 pwmAgent.start(ledState)
 
 while True:
-    input_up = GPIO.input(SWITCH_UP)
-    input_down = GPIO.input(SWITCH_DOWN)
+    inputUp = GPIO.input(SWITCH_UP)
+    inputDown = GPIO.input(SWITCH_DOWN)
 
-    if input_up:
+    if upState == 0 and inputUp == 1:
         ledState += 20
-    if input_down:
+    if downState == 0 and inputDown == 1:
         ledState -= 20
     if ledState < 0:
         ledState = 0
@@ -39,5 +41,7 @@ while True:
         ledState = 100
 
     pwmAgent.ChangeDutyCycle(ledState)
+    upState = inputUp
+    downState = inputDown
 
     sleep(0.1)
