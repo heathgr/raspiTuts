@@ -7,7 +7,8 @@ from time import sleep
 SWITCH_DOWN = 36
 SWITCH_UP = 38
 LED_0 = 40
-INCREMENT_AMOUNT = 10 / 6
+NUMBER_OF_INCREMENTS = 10
+INCREMENT_CONVERSION_EXPONENT = 10**(2/(NUMBER_OF_INCREMENTS - 1))
 
 
 def exitHandler():
@@ -22,26 +23,28 @@ GPIO.setup(LED_0, GPIO.OUT)
 atexit.register(exitHandler)
 
 pwmAgent = GPIO.PWM(LED_0, 2000)
-ledState = 0
+ledLevel = 0
 upState = 0
 downState = 0
 
-pwmAgent.start(ledState)
+pwmAgent.start(ledLevel)
 
 while True:
     inputUp = GPIO.input(SWITCH_UP)
     inputDown = GPIO.input(SWITCH_DOWN)
 
     if upState == 0 and inputUp == 1:
-        ledState += INCREMENT_AMOUNT
+        ledLevel += 1
     if downState == 0 and inputDown == 1:
-        ledState -= INCREMENT_AMOUNT
-    if ledState < 0:
-        ledState = 0
-    if ledState > 100:
-        ledState = 100
+        ledLevel -= 1
+    if ledLevel < 0:
+        ledLevel = 0
+    if ledLevel >= NUMBER_OF_INCREMENTS:
+        ledLevel = NUMBER_OF_INCREMENTS - 1
 
-    pwmAgent.ChangeDutyCycle(ledState)
+    dc = round(ledLevel**INCREMENT_CONVERSION_EXPONENT)
+    print(f"dc value:{dc} led level:{ledLevel}")
+    pwmAgent.ChangeDutyCycle(dc)
     upState = inputUp
     downState = inputDown
 
