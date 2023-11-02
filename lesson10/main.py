@@ -23,6 +23,8 @@ atexit.register(exitHandler)
 pwmAgent = GPIO.PWM(LED_0, 2000)
 ledState = 0
 
+pwmAgent.start(ledState)
+
 while True:
     input_up = GPIO.input(SWITCH_UP)
     input_down = GPIO.input(SWITCH_DOWN)
