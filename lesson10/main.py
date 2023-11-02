@@ -8,7 +8,8 @@ SWITCH_DOWN = 36
 SWITCH_UP = 38
 LED_0 = 40
 NUMBER_OF_INCREMENTS = 10
-INCREMENT_CONVERSION_EXPONENT = 10**(2/(NUMBER_OF_INCREMENTS - 2))
+MAX_LED_LEVEL = NUMBER_OF_INCREMENTS - 2
+INCREMENT_CONVERSION_EXPONENT = 10**(2/MAX_LED_LEVEL)
 
 
 def exitHandler():
@@ -39,13 +40,13 @@ while True:
         ledLevel -= 1
     if ledLevel < 0:
         ledLevel = 0
-    if ledLevel >= NUMBER_OF_INCREMENTS:
-        ledLevel = NUMBER_OF_INCREMENTS - 1
+    if ledLevel > MAX_LED_LEVEL:
+        ledLevel = MAX_LED_LEVEL
 
     if (ledLevel == 0):
         pwmAgent.ChangeDutyCycle(0)
     if (ledLevel != 0):
-        dc = round(INCREMENT_CONVERSION_EXPONENT**(ledLevel + 1))
+        dc = round(INCREMENT_CONVERSION_EXPONENT**ledLevel)
         print(f"dc value:{dc} led level:{ledLevel}")
         pwmAgent.ChangeDutyCycle(dc)
     upState = inputUp
