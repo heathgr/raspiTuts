@@ -19,7 +19,8 @@ def exitHandler():
     GPIO.cleanup()
 
 
-def allOffHandler():
+def allOffHandler(channel):
+    print(f"channel {channel} was pressed.")
     print("all off!!!!")
 
 
