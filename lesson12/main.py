@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 from RPi import GPIO
+from time import sleep
 import atexit
 
 LED_BLUE = 40
@@ -37,6 +38,8 @@ def init():
 
 def start():
     print("starting...")
+    while True:
+        sleep(1)
 
 
 init()
