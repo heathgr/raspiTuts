@@ -7,6 +7,7 @@ from time import sleep
 SWITCH_DOWN = 36
 SWITCH_UP = 38
 LED_0 = 40
+INCREMENT_AMOUNT = 10 / 6
 
 
 def exitHandler():
@@ -32,9 +33,9 @@ while True:
     inputDown = GPIO.input(SWITCH_DOWN)
 
     if upState == 0 and inputUp == 1:
-        ledState += 20
+        ledState += INCREMENT_AMOUNT
     if downState == 0 and inputDown == 1:
-        ledState -= 20
+        ledState -= INCREMENT_AMOUNT
     if ledState < 0:
         ledState = 0
     if ledState > 100:
