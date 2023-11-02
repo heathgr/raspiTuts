@@ -30,7 +30,7 @@ def init():
     GPIO.setup(SWITCH_ALL_OFF, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.add_event_detect(
         SWITCH_ALL_OFF,
-        GPIO.FALLING,
+        GPIO.RISING,
         callback=allOffHandler,
         bouncetime=300
     )
