@@ -32,6 +32,7 @@ def onAllOffPressed(channel):
 def onToggleLed(channel):
     ledPin = LED_FROM_SWITCH[channel]
 
+    print(f"Toggle pressed! button pin: {channel} led pin: {ledPin}")
     GPIO.output(ledPin, not GPIO.input(ledPin))
 
 
