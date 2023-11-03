@@ -13,15 +13,26 @@ SWITCH_BLUE = 24
 SWITCH_GREEN = 22
 SWITCH_RED = 18
 
+LED_FROM_SWITCH = {
+    SWITCH_BLUE: LED_BLUE,
+    SWITCH_GREEN: LED_GREEN,
+    SWITCH_RED: LED_RED,
+}
+
 
 def exitHandler():
     print("Cleaning up GPIO configuration.")
     GPIO.cleanup()
 
 
-def allOffHandler(channel):
-    print(f"channel {channel} was pressed.")
-    print("all off!!!!")
+def onAllOffPressed(channel):
+    print("all off pressed!!!!")
+
+
+def onToggleLed(channel):
+    ledPin = LED_FROM_SWITCH[channel]
+
+    GPIO.output(ledPin, not GPIO.input(ledPin))
 
 
 def init():
@@ -29,10 +40,22 @@ def init():
     atexit.register(exitHandler)
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(SWITCH_ALL_OFF, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(SWITCH_BLUE, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(SWITCH_RED, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(SWITCH_GREEN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(LED_BLUE, GPIO.OUT)
+    GPIO.setup(LED_GREEN, GPIO.OUT)
+    GPIO.setup(LED_RED, GPIO.OUT)
     GPIO.add_event_detect(
         SWITCH_ALL_OFF,
-        GPIO.RISING,
-        callback=allOffHandler,
+        GPIO.FALLING,
+        callback=onAllOffPressed,
+        bouncetime=300
+    )
+    GPIO.add_event_detect(
+        LED_BLUE,
+        GPIO.FALLING,
+        callback=onToggleLed,
         bouncetime=300
     )
 
