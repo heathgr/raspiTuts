@@ -26,7 +26,9 @@ def exitHandler():
 
 
 def onAllOffPressed(channel):
-    print("all off pressed!!!!")
+    GPIO.output(LED_BLUE, 0)
+    GPIO.output(LED_GREEN, 0)
+    GPIO.output(LED_RED, 0)
 
 
 def onToggleLed(channel):
