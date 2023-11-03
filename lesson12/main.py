@@ -58,6 +58,18 @@ def init():
         callback=onToggleLed,
         bouncetime=300
     )
+    GPIO.add_event_detect(
+        SWITCH_GREEN,
+        GPIO.FALLING,
+        callback=onToggleLed,
+        bouncetime=300
+    )
+    GPIO.add_event_detect(
+        SWITCH_RED,
+        GPIO.FALLING,
+        callback=onToggleLed,
+        bouncetime=300
+    )
 
 
 def start():
