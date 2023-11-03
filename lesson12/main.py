@@ -5,8 +5,8 @@ from time import sleep
 import atexit
 
 LED_BLUE = 40
-LED_RED = 38
-LED_GREEN = 36
+LED_GREEN = 38
+LED_RED = 36
 
 SWITCH_ALL_OFF = 26
 SWITCH_BLUE = 24
