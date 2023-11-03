@@ -53,7 +53,7 @@ def init():
         bouncetime=300
     )
     GPIO.add_event_detect(
-        LED_BLUE,
+        SWITCH_BLUE,
         GPIO.FALLING,
         callback=onToggleLed,
         bouncetime=300
