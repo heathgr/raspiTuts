@@ -18,8 +18,8 @@ MAX_SATURATION_LEVEL = 3
 MAX_VALUE_LEVEL = 5
 
 hueLevel = 0
-saturationLevel = 0
-valueLevel = 0
+saturationLevel = 3
+valueLevel = 5
 rPwmAgent = None
 gPwmAgent = None
 bPwmAgent = None
@@ -57,6 +57,9 @@ def init():
     GPIO.setup(LED_BLUE, GPIO.OUT)
     GPIO.setup(LED_GREEN, GPIO.OUT)
     GPIO.setup(LED_RED, GPIO.OUT)
+    rPwmAgent = GPIO.PWM(LED_RED, 2000)
+    gPwmAgent = GPIO.PWM(LED_GREEN, 2000)
+    bPwmAgent = GPIO.PWM(LED_BLUE, 2000)
     GPIO.add_event_detect(
         SWITCH_RESET,
         GPIO.FALLING,
