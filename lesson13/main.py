@@ -101,7 +101,8 @@ class LedController:
         print("Reset")
         pressedAt = datetime.now()
 
-        print(pressedAt - self.__lastResetPress)
+        if (pressedAt - self.__lastResetPress).seconds < 1:
+            self.isRunning = False
 
         self.__hueLevel = 0
         self.__saturationLevel = 0
@@ -136,7 +137,7 @@ def start():
     print("starting...")
     controller = LedController()
     while controller.isRunning:
-        sleep(1)
+        sleep(0.1)
 
 
 start()
