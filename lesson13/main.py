@@ -2,6 +2,7 @@
 
 from RPi import GPIO
 from time import sleep
+from utils import hsv_to_rgb
 import atexit
 
 LED_BLUE = 40
@@ -30,12 +31,26 @@ def exitHandler():
     GPIO.cleanup()
 
 
+def setLeds():
+    rgbValues = hsv_to_rgb(
+        hueLevel / MAX_HUE_LEVEL,
+        saturationLevel / MAX_SATURATION_LEVEL,
+        valueLevel / MAX_VALUE_LEVEL,
+    )
+
+    rPwmAgent.ChangeDutyCycle(round(rgbValues[0] * 100))
+    gPwmAgent.ChangeDutyCycle(round(rgbValues[1] * 100))
+    bPwmAgent.ChangeDutyCycle(round(rgbValues[2] * 100))
+
+
 def onResetPressed(channel):
     print("Reset")
 
 
 def onHuePressed(channel):
-    print("Hue")
+    hueLevel += 1
+    if (hueLevel > MAX_HUE_LEVEL):
+        hueLevel = 0
 
 
 def onSaturationPressed(channel):
@@ -84,6 +99,7 @@ def init():
         callback=onHuePressed,
         bouncetime=300
     )
+    setLeds()
 
 
 def start():
