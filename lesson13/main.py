@@ -14,18 +14,18 @@ SWITCH_VALUE = 24
 SWITCH_SATURATION = 22
 SWITCH_HUE = 18
 
-HUE_VALUES = [0, 20, 60, 90, 120, 150, 180, 190, 240, 300]
-MAX_SATURATION_LEVEL = 3
-MAX_VALUE_LEVEL = 5
+HUE_VALUES = [0, 2, 60, 90, 120, 130, 190, 240, 300]
+SATURATION_VALUES = [0, 0.01, 0.25, 0.5, 1]
+VALUE_VALUES = SATURATION_VALUES
 
 
 class LedController:
     def __init__(self):
         print("Initializing Led Controller....")
-        self.__hueLevel = 0
-        self.__saturationLevel = 0
-        self.__valueLevel = 0
         self.isRunning = True
+        self.__hueLevel = 0
+        self.__saturationLevel = len(SATURATION_VALUES) - 1
+        self.__valueLevel = len(VALUE_VALUES) - 1
 
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(SWITCH_RESET, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -79,8 +79,8 @@ class LedController:
     def getRgbValues(self):
         return hsv_to_rgb(
             HUE_VALUES[self.__hueLevel] / 360,
-            self.__saturationLevel / MAX_SATURATION_LEVEL,
-            self.__valueLevel / MAX_VALUE_LEVEL,
+            SATURATION_VALUES[self.__saturationLevel],
+            VALUE_VALUES[self.__valueLevel],
         )
 
     def setLeds(self):
@@ -105,15 +105,14 @@ class LedController:
     def onSaturationPressed(self, channel):
         print("Saturation Pressed")
         self.__saturationLevel += 1
-        if self.__saturationLevel > MAX_SATURATION_LEVEL:
-            self.__saturationLevel = 0
+        self.__saturationLevel = self.__saturationLevel % len(
+            SATURATION_VALUES)
         self.setLeds()
 
     def onValuePressed(self, channel):
         print("Value Pressed")
         self.__valueLevel += 1
-        if self.__valueLevel > MAX_VALUE_LEVEL:
-            self.__valueLevel = 0
+        self.__valueLevel = self.__saturationLevel % len(VALUE_VALUES)
         self.setLeds()
 
 
