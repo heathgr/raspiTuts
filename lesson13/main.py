@@ -77,9 +77,12 @@ class LedController:
         print(
             f"New RGB values: R {rgbValues[0]} G {rgbValues[1]} B {rgbValues[2]}")
 
-        self.__rPwmAgent.ChangeDutyCycle(round(rgbValues[0] * 100))
-        self.__gPwmAgent.ChangeDutyCycle(round(rgbValues[1] * 100))
-        self.__bPwmAgent.ChangeDutyCycle(round(rgbValues[2] * 100))
+        self.__rPwmAgent.ChangeDutyCycle(100)
+        self.__gPwmAgent.ChangeDutyCycle(100)
+        self.__bPwmAgent.ChangeDutyCycle(100)
+        # self.__rPwmAgent.ChangeDutyCycle(round(rgbValues[0] * 100))
+        # self.__gPwmAgent.ChangeDutyCycle(round(rgbValues[1] * 100))
+        # self.__bPwmAgent.ChangeDutyCycle(round(rgbValues[2] * 100))
 
     def onResetPressed(self, channel):
         print("Reset")
