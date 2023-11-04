@@ -74,7 +74,8 @@ class LedController:
             self.__valueLevel / MAX_VALUE_LEVEL,
         )
 
-        print(f"New RGB values: R {rgbValues[0] G} G {rgbValues[1]} B {rgbValues[2]}")
+        print(
+            f"New RGB values: R {rgbValues[0]} G {rgbValues[1]} B {rgbValues[2]}")
 
         self.__rPwmAgent.ChangeDutyCycle(round(rgbValues[0] * 100))
         self.__gPwmAgent.ChangeDutyCycle(round(rgbValues[1] * 100))
