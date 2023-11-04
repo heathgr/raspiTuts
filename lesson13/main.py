@@ -43,25 +43,25 @@ class LedController:
         GPIO.add_event_detect(
             SWITCH_RESET,
             GPIO.FALLING,
-            callback=self.__onResetPressed,
+            callback=self.onResetPressed,
             bouncetime=300
         )
         GPIO.add_event_detect(
             SWITCH_VALUE,
             GPIO.FALLING,
-            callback=self.__onValuePressed,
+            callback=self.onValuePressed,
             bouncetime=300
         )
         GPIO.add_event_detect(
             SWITCH_SATURATION,
             GPIO.FALLING,
-            callback=self.__onSaturationPressed,
+            callback=self.onSaturationPressed,
             bouncetime=300
         )
         GPIO.add_event_detect(
             SWITCH_HUE,
             GPIO.FALLING,
-            callback=self.__onHuePressed,
+            callback=self.onHuePressed,
             bouncetime=300
         )
         self.__setLeds()
