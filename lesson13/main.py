@@ -64,7 +64,7 @@ class LedController:
             callback=self.onHuePressed,
             bouncetime=300
         )
-        self.__setLeds()
+        self.setLeds()
         print("Ready :)")
 
     def setLeds(self):
