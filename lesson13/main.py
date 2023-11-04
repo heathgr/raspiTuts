@@ -74,14 +74,17 @@ class LedController:
             self.__valueLevel / MAX_VALUE_LEVEL,
         )
 
+        print(f"New RGB values: R {rgbValues[0] G} G {rgbValues[1]} B {rgbValues[2]}")
+
         self.__rPwmAgent.ChangeDutyCycle(round(rgbValues[0] * 100))
         self.__gPwmAgent.ChangeDutyCycle(round(rgbValues[1] * 100))
         self.__bPwmAgent.ChangeDutyCycle(round(rgbValues[2] * 100))
 
-    def onResetPressed(self):
+    def onResetPressed(self, channel):
         print("Reset")
 
     def onHuePressed(self, channel):
+        print("Hue Pressed")
         self.__hueLevel += 1
         if (self.__hueLevel > MAX_HUE_LEVEL):
             self.__hueLevel = 0
@@ -90,7 +93,7 @@ class LedController:
     def onSaturationPressed(self, channel):
         print("Saturation")
 
-    def onValuePressed(channel):
+    def onValuePressed(self, channel):
         print("Value")
 
 
