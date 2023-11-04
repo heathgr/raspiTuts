@@ -15,7 +15,7 @@ SWITCH_SATURATION = 22
 SWITCH_HUE = 18
 
 HUE_VALUES = [0, 2, 40, 120, 165, 240, 300]
-SATURATION_VALUES = [1, 0.99, 0.875, 0.5, 0.25, 0]
+SATURATION_VALUES = [1, 0.99, 0.875, 0.35, 0]
 VALUE_VALUES = [1, 0.5, 0.25, 0.125, 0.01, 0]
 
 
@@ -97,24 +97,25 @@ class LedController:
 
     def onResetPressed(self, channel):
         print("Reset")
+        self.__hueLevel = 0
+        self.__saturationLevel = 0
+        self.__valueLevel = 0
+        self.setLeds()
 
     def onHuePressed(self, channel):
         print("Hue Pressed")
-        self.__hueLevel += 1
-        self.__hueLevel = self.__hueLevel % len(HUE_VALUES)
+        self.__hueLevel = (self.__hueLevel + 1) % len(HUE_VALUES)
         self.setLeds()
 
     def onSaturationPressed(self, channel):
         print("Saturation Pressed")
-        self.__saturationLevel += 1
-        self.__saturationLevel = self.__saturationLevel % len(
+        self.__saturationLevel = (self.__saturationLevel + 1) % len(
             SATURATION_VALUES)
         self.setLeds()
 
     def onValuePressed(self, channel):
         print("Value Pressed")
-        self.__valueLevel += 1
-        self.__valueLevel = self.__valueLevel % len(VALUE_VALUES)
+        self.__valueLevel = (self.__valueLevel + 1) % len(VALUE_VALUES)
         self.setLeds()
 
 
