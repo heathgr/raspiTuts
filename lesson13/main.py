@@ -107,7 +107,7 @@ class LedController:
     def onSaturationPressed(self, channel):
         print("Saturation Pressed")
         self.__saturationLevel += 1
-        if self.__saturationLevel >= MAX_SATURATION_LEVEL:
+        if self.__saturationLevel > MAX_SATURATION_LEVEL:
             self.__saturationLevel = 0
         self.setLeds()
 
