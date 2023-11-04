@@ -100,15 +100,19 @@ class LedController:
     def onHuePressed(self, channel):
         print("Hue Pressed")
         self.__hueLevel += 1
-        if (self.__hueLevel > MAX_HUE_LEVEL):
+        if self.__hueLevel >= MAX_HUE_LEVEL:
             self.__hueLevel = 0
         self.setLeds()
 
     def onSaturationPressed(self, channel):
-        print("Saturation")
+        print("Saturation Pressed")
 
     def onValuePressed(self, channel):
-        print("Value")
+        print("Value Pressed")
+        self.__valueLevel += 1
+        if self.__valueLevel > MAX_VALUE_LEVEL:
+            self.__valueLevel = 0
+        self.setLeds()
 
 
 def exitHandler():
