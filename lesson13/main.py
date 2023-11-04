@@ -3,6 +3,7 @@
 from RPi import GPIO
 from time import sleep
 from utils import hsv_to_rgb
+from datetime import datetime
 import atexit
 
 LED_BLUE = 40
@@ -26,6 +27,7 @@ class LedController:
         self.__hueLevel = 0
         self.__saturationLevel = 0
         self.__valueLevel = 0
+        self.__lastResetPress = datetime.now()
 
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(SWITCH_RESET, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -97,10 +99,15 @@ class LedController:
 
     def onResetPressed(self, channel):
         print("Reset")
+        pressedAt = datetime.now()
+
+        print(pressedAt - self.__lastResetPress)
+
         self.__hueLevel = 0
         self.__saturationLevel = 0
         self.__valueLevel = 0
         self.setLeds()
+        self.__lastResetPress = pressedAt
 
     def onHuePressed(self, channel):
         print("Hue Pressed")
