@@ -14,7 +14,7 @@ SWITCH_VALUE = 24
 SWITCH_SATURATION = 22
 SWITCH_HUE = 18
 
-MAX_HUE_LEVEL = 5
+HUE_VALUES = [0, 20, 60, 90, 120, 150, 180, 190, 240, 300]
 MAX_SATURATION_LEVEL = 3
 MAX_VALUE_LEVEL = 5
 
@@ -23,8 +23,8 @@ class LedController:
     def __init__(self):
         print("Initializing Led Controller....")
         self.__hueLevel = 0
-        self.__saturationLevel = 3
-        self.__valueLevel = 5
+        self.__saturationLevel = 0
+        self.__valueLevel = 0
         self.isRunning = True
 
         GPIO.setmode(GPIO.BOARD)
@@ -65,11 +65,7 @@ class LedController:
             bouncetime=300
         )
 
-        rgbValues = hsv_to_rgb(
-            self.__hueLevel / MAX_HUE_LEVEL,
-            self.__saturationLevel / MAX_SATURATION_LEVEL,
-            self.__valueLevel / MAX_VALUE_LEVEL,
-        )
+        rgbValues = self.getRgbValues()
 
         print(
             f"Initial RGB values: R {rgbValues[0]} G {rgbValues[1]} B {rgbValues[2]}")
@@ -80,12 +76,15 @@ class LedController:
 
         print("Ready :)")
 
-    def setLeds(self):
-        rgbValues = hsv_to_rgb(
-            self.__hueLevel / MAX_HUE_LEVEL,
+    def getRgbValues(self):
+        return hsv_to_rgb(
+            HUE_VALUES[self.__hueLevel] / 360,
             self.__saturationLevel / MAX_SATURATION_LEVEL,
             self.__valueLevel / MAX_VALUE_LEVEL,
         )
+
+    def setLeds(self):
+        rgbValues = self.getRgbValues()
 
         print(
             f"New RGB values: R {rgbValues[0]} G {rgbValues[1]} B {rgbValues[2]}")
@@ -100,8 +99,7 @@ class LedController:
     def onHuePressed(self, channel):
         print("Hue Pressed")
         self.__hueLevel += 1
-        if self.__hueLevel >= MAX_HUE_LEVEL:
-            self.__hueLevel = 0
+        self.__hueLevel = self.__hueLevel % len(HUE_VALUES)
         self.setLeds()
 
     def onSaturationPressed(self, channel):
