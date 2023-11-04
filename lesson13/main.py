@@ -64,7 +64,20 @@ class LedController:
             callback=self.onHuePressed,
             bouncetime=300
         )
-        self.setLeds()
+
+        rgbValues = hsv_to_rgb(
+            self.__hueLevel / MAX_HUE_LEVEL,
+            self.__saturationLevel / MAX_SATURATION_LEVEL,
+            self.__valueLevel / MAX_VALUE_LEVEL,
+        )
+
+        print(
+            f"Initial RGB values: R {rgbValues[0]} G {rgbValues[1]} B {rgbValues[2]}")
+
+        self.__rPwmAgent.start(round(rgbValues[0] * 100))
+        self.__gPwmAgent.start(round(rgbValues[1] * 100))
+        self.__bPwmAgent.start(round(rgbValues[2] * 100))
+
         print("Ready :)")
 
     def setLeds(self):
@@ -77,12 +90,9 @@ class LedController:
         print(
             f"New RGB values: R {rgbValues[0]} G {rgbValues[1]} B {rgbValues[2]}")
 
-        self.__rPwmAgent.ChangeDutyCycle(100)
-        self.__gPwmAgent.ChangeDutyCycle(100)
-        self.__bPwmAgent.ChangeDutyCycle(100)
-        # self.__rPwmAgent.ChangeDutyCycle(round(rgbValues[0] * 100))
-        # self.__gPwmAgent.ChangeDutyCycle(round(rgbValues[1] * 100))
-        # self.__bPwmAgent.ChangeDutyCycle(round(rgbValues[2] * 100))
+        self.__rPwmAgent.ChangeDutyCycle(round(rgbValues[0] * 100))
+        self.__gPwmAgent.ChangeDutyCycle(round(rgbValues[1] * 100))
+        self.__bPwmAgent.ChangeDutyCycle(round(rgbValues[2] * 100))
 
     def onResetPressed(self, channel):
         print("Reset")
