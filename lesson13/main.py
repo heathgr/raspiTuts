@@ -62,6 +62,10 @@ def onValuePressed(channel):
 
 
 def init():
+    global rPwmAgent
+    global gPwmAgent
+    global bPwmAgent
+
     print("Initializing....")
     atexit.register(exitHandler)
     GPIO.setmode(GPIO.BOARD)
@@ -72,9 +76,9 @@ def init():
     GPIO.setup(LED_BLUE, GPIO.OUT)
     GPIO.setup(LED_GREEN, GPIO.OUT)
     GPIO.setup(LED_RED, GPIO.OUT)
-    global rPwmAgent = GPIO.PWM(LED_RED, 2000)
-    global gPwmAgent = GPIO.PWM(LED_GREEN, 2000)
-    global bPwmAgent = GPIO.PWM(LED_BLUE, 2000)
+    rPwmAgent = GPIO.PWM(LED_RED, 2000)
+    gPwmAgent = GPIO.PWM(LED_GREEN, 2000)
+    bPwmAgent = GPIO.PWM(LED_BLUE, 2000)
     GPIO.add_event_detect(
         SWITCH_RESET,
         GPIO.FALLING,
