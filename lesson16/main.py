@@ -35,9 +35,9 @@ try:
             lVal / 255
         )
         print(f"r: {rgb[0]} g: {rgb[1]} b: {rgb[2]}")
-        rPwmAgent.ChangeDutyCylce(int(rgb[0] * 100))
-        gPwmAgent.ChangeDutyCylce(int(rgb[1] * 100))
-        bPwmAgent.ChangeDutyCylce(int(rgb[2] * 100))
+        rPwmAgent.ChangeDutyCycle(int(rgb[0] * 100))
+        gPwmAgent.ChangeDutyCycle(int(rgb[1] * 100))
+        bPwmAgent.ChangeDutyCycle(int(rgb[2] * 100))
         time.sleep(.2)
 
 except KeyboardInterrupt:
