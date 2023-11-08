@@ -4,12 +4,12 @@ import RPi.GPIO as GPIO
 import atexit
 from time import sleep
 
-SERVO = 13
+SERVO = 26
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(SERVO, GPIO.OUT)
 
-servoPwm = GPIO.PWM(SERVO, 100)
+servoPwm = GPIO.PWM(SERVO, 50)
 servoPwm.start(0)
 
 
