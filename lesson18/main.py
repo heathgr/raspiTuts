@@ -8,7 +8,7 @@ PUSH_BUTTON = 26
 
 GPIO.setmode(GPIO.BCM)
 ADC0834.setup()
-GPIO.setup(PUSH_BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(PUSH_BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 try:
     while True:
