@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
-from gpiozero import AngularServo
+from gpiozero import Servo
 from time import sleep
 
-servo = AngularServo(26, min_angle=-90, max_angle=90)
+servo = Servo(26)
 
 while True:
-    value = float(input("Servo Angle: "))
-    servo.angle = value
+    value = float(input("Servo Value: "))
+    servo.value = value
     sleep(2)
