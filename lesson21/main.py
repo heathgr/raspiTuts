@@ -7,7 +7,7 @@ import atexit
 
 def cleanExit():
     print("Cleaning GPIO")
-    GPIO.clean()
+    GPIO.cleanup()
 
 
 atexit.register(cleanExit)
@@ -20,11 +20,13 @@ GPIO.setup(TRIGGER, GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
 
 while True:
+    print("executing trigger")
     GPIO.output(TRIGGER, 0)
     sleep(2E-6)
     GPIO.output(TRIGGER, 1)
     sleep(10E-6)
     GPIO.output(TRIGGER, 0)
+    print("waiting for echo")
     while GPIO.input(ECHO) == 0:
         pass
     echoStartTime = time()
@@ -32,3 +34,4 @@ while True:
         pass
     echoEndTime = time()
     print(echoStartTime - echoEndTime)
+    sleep(0.2)
