@@ -31,5 +31,6 @@ while True:
     while GPIO.input(ECHO) == 1:
         pass
     echoEndTime = time()
-    print((echoEndTime - echoStartTime) * 13397.24409)
+    # print((echoEndTime - echoStartTime) * 13397.24409)
+    print((echoEndTime - echoStartTime) * 13499.2)
     sleep(0.2)
