@@ -11,14 +11,15 @@ def cleanExit():
     GPIO.cleanup()
 
 
-atexit(cleanExit)
+atexit.register(cleanExit)
 
 SENSOR_PIN = 21
 
+GPIO.setmode(GPIO.BCM)
 sensor = DHT11(pin=SENSOR_PIN)
 
 while True:
     value = sensor.read()
     if value.is_valid():
-        print(f"Temp: {value.temperature} Humidity: {value.humidity}")
+        print(f"Temp: {(value.temperature * 1.8) + 32} Humidity: {value.humidity}")
     sleep(0.2)

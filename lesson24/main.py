@@ -6,7 +6,7 @@ import atexit
 
 PIR = 26
 
-GPIO.mode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(PIR, GPIO.IN)
 
 
@@ -17,6 +17,7 @@ def cleanExit():
 
 atexit.register(cleanExit)
 
+print("Initializing hold on to your butts!!!!")
 sleep(10)
 
 while True:
