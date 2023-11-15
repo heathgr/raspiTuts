@@ -42,5 +42,5 @@ while True:
     if value.is_valid():
         print(f"Temp: {value.temperature} Humidity: {value.humidity}")
         LCD.write(0, 0, f"Temp: {value.temperature}C")
-        LCD.write(1, 0, f"Humidity: {value.humidity}%")
+        LCD.write(0, 1, f"Humidity: {value.humidity}%")
     sleep(0.2)
