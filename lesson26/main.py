@@ -1,17 +1,28 @@
 #!/usr/bin/python3
 
-import LCD1602
+from time import sleep
+from RPi import GPIO
+from dht11 import DHT11
+import LCD1602 as LCD
 import atexit
 
 
 def cleanExit():
+    sleep(0.2)
     print("Cleaning up LCD Display.")
-    LCD1602.clear()
+    LCD.clear()
 
 
 atexit.register(cleanExit)
 
-LCD1602.init(0X27, 1)
+LCD.init(0X27, 1)
+sensor = DHT11(pin=21)
 
 while True:
-    LCD1602.write(0, 0, "Hello!!!")
+    LCD.write(0, 0, "Hello!!!")
+    value = sensor.read()
+    if value.is_valid():
+        print(f"Temp: {value.temperature} Humidity: {value.humidity}")
+        LCD.write(0, 0, f"Temp: {value.temperature}C")
+        LCD.write(1, 0, f"Humidity: {value.humidity}%")
+    sleep(0.2)
