@@ -17,9 +17,24 @@ def cleanExit():
 
 atexit.register(cleanExit)
 
+TOGGLE_BUTTON = 20
+
 GPIO.setmode(GPIO.BCM)
 LCD.init(0X27, 1)
 sensor = DHT11(pin=21)
+
+
+def onToggle(channel):
+    print("pressed!!")
+
+
+GPIO.setup(TOGGLE_BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.add_event_detect(
+    TOGGLE_BUTTON,
+    GPIO.FALLING,
+    callback=onToggle,
+    bouncetime=300
+)
 
 while True:
     LCD.write(0, 0, "Hello!!!")
