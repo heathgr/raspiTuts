@@ -11,10 +11,13 @@ def cleanExit():
     sleep(0.2)
     print("Cleaning up LCD Display.")
     LCD.clear()
+    print("Cleaning up GPIO.")
+    GPIO.cleanup()
 
 
 atexit.register(cleanExit)
 
+GPIO.setmode(GPIO.BCM)
 LCD.init(0X27, 1)
 sensor = DHT11(pin=21)
 
