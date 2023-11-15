@@ -37,7 +37,6 @@ GPIO.add_event_detect(
 )
 
 while True:
-    LCD.write(0, 0, "Hello!!!")
     value = sensor.read()
     if value.is_valid():
         print(f"Temp: {value.temperature} Humidity: {value.humidity}")
