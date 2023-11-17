@@ -48,6 +48,6 @@ while True:
             LCD.write(0, 0, f"Temp: {value.temperature}C")
         if showF:
             LCD.write(
-                0, 0, f"Temp: {round((value.temperature * 1.8) + 32, 2)}F")
+                0, 0, f"Temp: {round((value.temperature * 1.8) + 32, 1)}F")
         LCD.write(0, 1, f"Humidity: {value.humidity}%")
     sleep(0.2)
