@@ -23,9 +23,13 @@ GPIO.setmode(GPIO.BCM)
 LCD.init(0X27, 1)
 sensor = DHT11(pin=21)
 
+showF = False
+
 
 def onToggle(channel):
-    print("pressed!!")
+    global showF
+
+    showF = not showF
 
 
 GPIO.setup(TOGGLE_BUTTON, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
@@ -40,6 +44,9 @@ while True:
     value = sensor.read()
     if value.is_valid():
         print(f"Temp: {value.temperature} Humidity: {value.humidity}")
-        LCD.write(0, 0, f"Temp: {value.temperature}C")
+        if not showF:
+            LCD.write(0, 0, f"Temp: {value.temperature}C")
+        if showF:
+            LCD.write(0, 0, f"Temp: {(value.temperature * 1.8) + 32}F")
         LCD.write(0, 1, f"Humidity: {value.humidity}%")
     sleep(0.2)
