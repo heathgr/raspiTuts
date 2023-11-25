@@ -23,7 +23,7 @@ buzzPwm.start(0)
 while True:
     for i in range(150, 2000):
         buzzPwm.ChangeFrequency(i)
-        sleep(0.001)
+        sleep(0.0001)
     for i in range(2000, 150, -1):
         buzzPwm.ChangeFrequency(i)
-        sleep(0.001)
+        sleep(0.0001)
