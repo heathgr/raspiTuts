@@ -18,7 +18,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(BUZZER, GPIO.OUT)
 
 buzzPwm = GPIO.PWM(BUZZER, 400)
-buzzPwm.start(0)
+buzzPwm.start(50)
 
 while True:
     for i in range(150, 2000):
