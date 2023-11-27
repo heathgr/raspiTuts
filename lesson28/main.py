@@ -4,7 +4,7 @@ from store import Store
 from display import Display
 from time import sleep
 
-state = store({
+state = Store({
     "temp": 0,
     "triggerPoint": 15,
     "triggerLessThan": True,
