@@ -9,7 +9,7 @@ class Display:
         store.subscribe(self.update)
 
     def update(self, state):
-        aboveMessage = "<" if state["triggerLessThan"] else ">"
+        aboveMessage = chr(2193) if state["triggerLessThan"] else chr(2191)
 
         self.__lcd.message(f"Temp: {state['temp']}", 1)
         self.__lcd.message(
