@@ -17,17 +17,26 @@ display = Display()
 display.register(state)
 
 
+def cleanExit():
+    display.clear()
+
+
+atexit.register(cleanExit)
+
+
 class Test:
     def __init__(self, state):
         self.__state = state
 
     def task1(self):
         while True:
+            print("task 1 running.")
             self.__state.update({"temp": 5})
             sleep(3)
 
     def task2(self):
         while True:
+            print("task 2 running.")
             self.__state.update({"temp": 8})
             sleep(1.87)
 
@@ -42,12 +51,6 @@ class Test:
         self.__proc1.kill()
         self.__proc2.kill()
 
-
-def cleanExit():
-    display.clear()
-
-
-atexit.register(cleanExit)
 
 test = Test(state)
 
