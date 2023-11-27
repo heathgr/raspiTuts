@@ -11,6 +11,6 @@ class Display:
     def update(self, state):
         aboveMessage = "below" if state["triggerLessThan"] else "above"
 
-        self.__lcd.message(f"Temp: {state['tempurature']}", 1)
+        self.__lcd.message(f"Temp: {state['temp']}", 1)
         self.__lcd.message(
             f"Alarm when {aboveMessage} {state['triggerPoint']}.")
