@@ -15,3 +15,7 @@ class Store:
         self.__state = dict(chain(self.__state.items(), newState.items()))
         for callback in self.callbacks:
             callback(self.__state)
+
+    @property
+    def state(self):
+        return self.__state
