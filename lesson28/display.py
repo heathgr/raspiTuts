@@ -13,4 +13,4 @@ class Display:
 
         self.__lcd.message(f"Temp: {state['temp']}", 1)
         self.__lcd.message(
-            f"Alarm when {aboveMessage} {state['triggerPoint']}.")
+            f"Alarm when {aboveMessage} {state['triggerPoint']}.", 2)
