@@ -65,5 +65,6 @@ potentiometer = MCP3008(0)
 
 while True:
     value = potentiometer.value()
+    state.update({"triggerPoint": round(value * 100, 2)})
     print(f"value: {value}")
     sleep(0.2)
