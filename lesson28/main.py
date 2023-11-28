@@ -6,6 +6,7 @@ from time import sleep
 import atexit
 
 from multiprocessing import Process
+from gpiozero import MCP3008
 
 state = Store({
     "temp": 0,
