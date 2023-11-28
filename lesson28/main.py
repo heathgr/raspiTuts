@@ -52,10 +52,17 @@ class Test:
         self.__proc2.kill()
 
 
-test = Test(state)
+# test = Test(state)
 
-test.start()
+# test.start()
 
-sleep(30)
+# sleep(30)
 
-test.stop()
+# test.stop()
+
+potentiometer = MCP3008(0)
+
+while True:
+    value = potentiometer.value()
+    print(f"value: {value}")
+    sleep(0.2)
