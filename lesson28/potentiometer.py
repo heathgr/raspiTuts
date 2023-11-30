@@ -4,18 +4,19 @@ from time import sleep
 
 
 class Potentiometer:
+    onChange = None
+
     def __init__(self, channel):
         self.__potentiometer = MCP3008(channel)
         self.__process = Process(target=self.processHandler)
         self.__value = None
-
-    @property
-    def onChange(self, callback):
-        self.__callback = callback
         self.__process.start()
 
     def processHandler(self):
         while True:
+            if self.onChange == None:
+                pass
+
             newValue = round(self.__potentiometer.value, 2)
             if newValue != self.__value:
                 self.__callback(newValue)
