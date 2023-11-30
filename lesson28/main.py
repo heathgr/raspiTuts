@@ -30,7 +30,10 @@ atexit.register(cleanExit)
 def alarmDialChanged(value):
     print(f"value: {value}")
     if state.state["isEditable"]:
+        print(f"will update")
         state.update({"triggerPoint": round(value * 100, 0)})
+    else:
+        print("don't update")
 
 
 def toggleHeld():
