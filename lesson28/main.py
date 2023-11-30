@@ -28,6 +28,7 @@ atexit.register(cleanExit)
 
 
 def alarmDialChanged(value):
+    print(f"value: {value}")
     if state.state["isEditable"]:
         state.update({"triggerPoint": round(value * 100, 0)})
 
