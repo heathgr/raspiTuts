@@ -25,7 +25,7 @@ atexit.register(cleanExit)
 
 
 def onalarmDialChange(value):
-    print(f"dial value: {value}")
+    state.update({"triggerPoint": value * 100})
 
 
 alarmDial.onChange(onalarmDialChange)
