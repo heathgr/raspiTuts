@@ -14,15 +14,11 @@ class Potentiometer:
 
     def processHandler(self):
         while True:
-            if self.onChange == None:
-                print("no handler")
-                sleep(0.2)
-                pass
-
-            newValue = round(self.__potentiometer.value, 2)
-            if newValue != self.__value:
-                self.onChange(newValue)
-            self.__value = newValue
+            if self.onChange != None:
+                newValue = round(self.__potentiometer.value, 2)
+                if newValue != self.__value:
+                    self.onChange(newValue)
+                self.__value = newValue
             sleep(0.2)
 
     @property
