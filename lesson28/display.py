@@ -5,7 +5,7 @@ class Display:
     def __init__(self):
         self.__lcd = LCD(2, 0x27, True)
 
-    def register(self, store):
+    def subscribe(self, store):
         store.subscribe(self.update)
 
     def update(self, state):
