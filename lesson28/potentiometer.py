@@ -15,6 +15,7 @@ class Potentiometer:
     def processHandler(self):
         while True:
             if self.onChange == None:
+                print("no handler")
                 sleep(0.2)
                 pass
 
