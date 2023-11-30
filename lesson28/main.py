@@ -2,11 +2,9 @@
 
 from store import Store
 from display import Display
+from potentiometer import Potentiometer
 from time import sleep
 import atexit
-
-from multiprocessing import Process
-from gpiozero import MCP3008
 
 state = Store({
     "temp": 0,
@@ -16,6 +14,7 @@ state = Store({
 
 display = Display()
 display.register(state)
+alarmDial = Potentiometer(0)
 
 
 def cleanExit():
@@ -23,6 +22,13 @@ def cleanExit():
 
 
 atexit.register(cleanExit)
+
+
+def onalarmDialChange(value):
+    print(f"dial value: {value}")
+
+
+alarmDial.onChange(onalarmDialChange)
 
 
 class Test:
@@ -61,10 +67,5 @@ class Test:
 
 # test.stop()
 
-potentiometer = MCP3008(0)
-
 while True:
-    value = potentiometer.value
-    state.update({"triggerPoint": round(value * 100, 2)})
-    print(f"value: {value}")
     sleep(0.2)
