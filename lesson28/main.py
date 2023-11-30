@@ -49,5 +49,7 @@ alarmToggle.when_held = toggleHeld
 
 alarmDial.onChange = alarmDialChanged
 
+print("Initialized!!!")
+
 while True:
     sleep(0.2)

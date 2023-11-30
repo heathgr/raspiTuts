@@ -15,10 +15,13 @@ class Potentiometer:
     def processHandler(self):
         while True:
             if self.onChange != None:
+                print("checking pot value")
                 newValue = round(self.__potentiometer.value, 2)
                 if newValue != self.__value:
                     self.onChange(newValue)
                 self.__value = newValue
+            else:
+                print("onchange not set")
             sleep(0.2)
 
     @property
