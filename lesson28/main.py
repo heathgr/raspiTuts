@@ -28,18 +28,20 @@ atexit.register(cleanExit)
 
 
 def alarmDialChanged(value):
-    state.update({"triggerPoint": round(value * 100, 0)})
+    if state.state["isEditable"]:
+        state.update({"triggerPoint": round(value * 100, 0)})
 
 
 def toggleHeld():
-    print("long press")
+    state.update({"isEditable": not state.state["isEditable"]})
 
 
-def togglePressed():
-    print("pressed")
+def toggleReleased():
+    if state.state["isEditable"]:
+        state.update({"triggerLessThan": not state.state["triggerLessThan"]})
 
 
-alarmToggle.when_pressed = togglePressed
+alarmToggle.when_released = toggleReleased
 alarmToggle.when_held = toggleHeld
 
 alarmDial.onChange(alarmDialChanged)
