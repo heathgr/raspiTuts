@@ -7,6 +7,7 @@ class Potentiometer:
     def __init__(self, channel):
         self.__potentiometer = MCP3008(channel)
         self.__process = Process(target=self.processHandler)
+        self.__value = None
 
     def onChange(self, callback):
         self.__callback = callback
