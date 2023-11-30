@@ -9,6 +9,7 @@ class Potentiometer:
         self.__process = Process(target=self.processHandler)
         self.__value = None
 
+    @property
     def onChange(self, callback):
         self.__callback = callback
         self.__process.start()

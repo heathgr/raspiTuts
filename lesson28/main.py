@@ -47,7 +47,7 @@ def togglePressed():
 alarmToggle.when_pressed = togglePressed
 alarmToggle.when_held = toggleHeld
 
-alarmDial.onChange(alarmDialChanged)
+alarmDial.onChange = alarmDialChanged
 
 while True:
     sleep(0.2)
