@@ -44,8 +44,8 @@ def togglePressed():
         state.update({"triggerLessThan": not state.state["triggerLessThan"]})
 
 
-alarmToggle.when_released = togglePressed
-alarmToggle.when_pressed = toggleHeld
+alarmToggle.when_pressed = togglePressed
+alarmToggle.when_held = toggleHeld
 
 alarmDial.onChange(alarmDialChanged)
 
