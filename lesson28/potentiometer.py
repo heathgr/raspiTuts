@@ -15,11 +15,12 @@ class Potentiometer:
     def processHandler(self):
         while True:
             if self.onChange == None:
+                sleep(0.2)
                 pass
 
             newValue = round(self.__potentiometer.value, 2)
             if newValue != self.__value:
-                self.__callback(newValue)
+                self.callback(newValue)
             self.__value = newValue
             sleep(0.2)
 
