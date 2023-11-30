@@ -20,7 +20,7 @@ class Potentiometer:
 
             newValue = round(self.__potentiometer.value, 2)
             if newValue != self.__value:
-                self.callback(newValue)
+                self.onChange(newValue)
             self.__value = newValue
             sleep(0.2)
 
