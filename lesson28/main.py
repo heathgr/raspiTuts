@@ -38,8 +38,10 @@ def alarmDialChanged(value):
 def toggleHeld():
     state.update({"isEditable": not state.state["isEditable"]})
 
+
 def togglePressed():
     state.update({"togglePressedTime": time()})
+
 
 def toggleReleased():
     if (time() - state.state["togglePressedTime"]) > 0.5:
@@ -47,7 +49,8 @@ def toggleReleased():
     if state.state["isEditable"]:
         state.update({"triggerLessThan": not state.state["triggerLessThan"]})
 
-alarmToggle.when_pressed = 
+
+alarmToggle.when_pressed = togglePressed
 alarmToggle.when_released = toggleReleased
 alarmToggle.when_held = toggleHeld
 
