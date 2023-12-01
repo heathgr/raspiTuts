@@ -5,6 +5,7 @@ from display import Display
 from potentiometer import Potentiometer
 from gpiozero import Button
 from time import sleep, time
+from dht11 import DHT11
 import atexit
 
 state = Store({
@@ -21,6 +22,7 @@ display = Display()
 display.subscribe(state)
 alarmDial = Potentiometer(0)
 alarmToggle = Button(19, pull_up=False, hold_time=TOGGLE_HOLD_TIME)
+tempSensor = DHT11(pin=13)
 
 
 def cleanExit():
@@ -63,4 +65,8 @@ state.update({"triggerPoint": round((1 - alarmDial.value) * 100)})
 print("Initialized!!!")
 
 while True:
+    value = tempSensor.read()
+    if value.is_valid():
+        print(
+            f"Temp: {(value.temperature * 1.8) + 32} Humidity: {value.humidity}")
     sleep(0.2)
