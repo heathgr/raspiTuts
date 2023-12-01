@@ -56,7 +56,9 @@ alarmToggle.when_held = toggleHeld
 
 alarmDial.onChange = alarmDialChanged
 
-state.update({"triggerPoint": (1 - alarmDial.value) * 100})
+sleep(0.2)
+
+state.update({"triggerPoint": round((1 - alarmDial.value) * 100)})
 
 print("Initialized!!!")
 
