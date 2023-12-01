@@ -16,7 +16,7 @@ class TempSensor:
             if self.onChange:
                 reading = self.__sensor.read()
                 if reading.is_valid():
-                    newValue = (reading.temperature * 1.8) + 32
+                    newValue = round((reading.temperature * 1.8) + 32, 2)
                     if newValue != self.__value:
                         self.onChange(newValue)
                     self.__value = newValue

@@ -53,7 +53,7 @@ def toggleReleased():
 
 
 def tempChanged(value):
-    print(f"temp: {value}")
+    state.update({"temp": value})
 
 
 alarmToggle.when_pressed = togglePressed
