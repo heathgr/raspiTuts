@@ -22,6 +22,7 @@ display.subscribe(state)
 alarmDial = Potentiometer(0)
 alarmToggle = Button(19, pull_up=False, hold_time=TOGGLE_HOLD_TIME)
 
+state.update("triggerPoint": (1 - alarmDial.value) * 100)
 
 def cleanExit():
     display.clear()
