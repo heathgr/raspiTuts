@@ -18,7 +18,7 @@ class Potentiometer:
                 if newValue != self.__value:
                     self.onChange(newValue)
                 self.__value = newValue
-            sleep(0.2)
+            sleep(0.4)
 
     @property
     def value(self):
