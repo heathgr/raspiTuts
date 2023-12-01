@@ -64,7 +64,7 @@ alarmDial.onChange = alarmDialChanged
 
 tempSensor.onChange = tempChanged
 
-sleep(0.2)
+sleep(0.5)
 
 state.update({"triggerPoint": round((1 - alarmDial.value) * 100)})
 
