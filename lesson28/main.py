@@ -6,6 +6,7 @@ from potentiometer import Potentiometer
 from gpiozero import Button
 from time import sleep, time
 from tempSensor import TempSensor
+from buzzer import Buzzer
 import atexit
 
 state = Store({
@@ -19,10 +20,10 @@ state = Store({
 TOGGLE_HOLD_TIME = 0.5
 
 display = Display()
-display.subscribe(state)
 alarmDial = Potentiometer(0)
 alarmToggle = Button(19, pull_up=False, hold_time=TOGGLE_HOLD_TIME)
 tempSensor = TempSensor(13)
+buzzer = Buzzer(26)
 
 
 def cleanExit():
@@ -67,6 +68,7 @@ tempSensor.onChange = tempChanged
 sleep(0.5)
 
 state.update({"triggerPoint": round((1 - alarmDial.value) * 100)})
+display.subscribe(state)
 
 print("Initialized!!!")
 
