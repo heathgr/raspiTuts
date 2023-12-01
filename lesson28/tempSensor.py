@@ -20,4 +20,4 @@ class TempSensor:
                     if newValue != self.__value:
                         self.onChange(newValue)
                     self.__value = newValue
-            sleep(0.2)
+            sleep(1)
