@@ -21,3 +21,7 @@ class TempSensor:
                         self.onChange(newValue)
                     self.__value = newValue
             sleep(1)
+
+    @property
+    def value(self):
+        return self.__value
