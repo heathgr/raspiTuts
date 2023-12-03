@@ -28,6 +28,10 @@ class Buzzer:
 
     def update(self, state):
         print(f"update: {state}")
+        if not state["temp"]:
+            self.__isActive = False
+            return
+
         if state["triggerLessThan"] and (state["temp"] < state["triggerPoint"]):
             self.__isActive = True
             return
