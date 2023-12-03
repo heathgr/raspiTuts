@@ -67,7 +67,10 @@ tempSensor.onChange = tempChanged
 
 sleep(0.5)
 
-state.update({"triggerPoint": round((1 - alarmDial.value) * 100)})
+state.update({
+    "triggerPoint": round((1 - alarmDial.value) * 100),
+    "temp": tempSensor.value
+})
 display.subscribe(state)
 buzzer.subscribe(state)
 
