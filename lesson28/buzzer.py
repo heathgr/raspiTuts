@@ -8,8 +8,8 @@ class Buzzer:
     def __init__(self, pin):
         self.__buzzer = TonalBuzzer(pin)
         self.__process = Thread(target=self.processHandler)
-        self.__process.start()
         self.__isActive = False
+        self.__process.start()
         pass
 
     def processHandler(self):
