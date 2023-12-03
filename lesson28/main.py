@@ -69,6 +69,7 @@ sleep(0.5)
 
 state.update({"triggerPoint": round((1 - alarmDial.value) * 100)})
 display.subscribe(state)
+buzzer.subscribe(state)
 
 print("Initialized!!!")
 
