@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-from gpiozero import LightSensor, SmoothedInputDevice
+from gpiozero import LightSensor, InputDevice
 from time import sleep
 import atexit
 
@@ -12,7 +12,7 @@ def cleanExit():
 atexit.register(cleanExit)
 
 lightSensor = LightSensor(19)
-motionSensor = SmoothedInputDevice(13)
+motionSensor = InputDevice(13)
 
 while True:
     lightValue = lightSensor.value
