@@ -16,10 +16,11 @@ lightSensor = LightSensor(19)
 motionSensor = InputDevice(13)
 buzzer = TonalBuzzer(26)
 
+motionTriggeredTime = 0
+
 while True:
     lightValue = lightSensor.value
     motionValue = motionSensor.value
-    motionTriggeredTime = 0
 
     if motionValue == 1:
         motionTriggeredTime = time()
