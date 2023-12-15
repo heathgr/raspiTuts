@@ -19,12 +19,15 @@ buzzer = TonalBuzzer(26)
 while True:
     lightValue = lightSensor.value
     motionValue = motionSensor.value
-    motionTriggered = 0
+    motionTriggeredTime = 0
 
     if motionValue == 1:
-        motionTriggered = time()
-    print(f"light value: {lightValue} motion value: {motionValue}")
-    if lightValue < 0.5 and (time() - motionTriggered) < 5:
+        motionTriggeredTime = time()
+
+    timeSinceTrigger = time() - motionTriggeredTime
+    print(
+        f"light value: {lightValue} motion value: {motionValue} delay: {timeSinceTrigger}")
+    if lightValue < 0.5 and timeSinceTrigger < 15:
         buzzer.play(Tone("A4"))
         sleep(0.2)
         buzzer.play(Tone("C4"))
