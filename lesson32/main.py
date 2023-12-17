@@ -3,12 +3,14 @@
 from gpiozero import OutputDevice, InputDevice
 from time import sleep
 
-out = OutputDevice(19)
-input = InputDevice(21)
+# columns
+columns = OutputDevice(21)
+# rows
+rows = InputDevice(19)
 
 while True:
-    out.on()
-    value = input.value
-    out.off()
+    columns.on()
+    value = rows.value
+    columns.off()
     print(f"test: {value}")
     sleep(0.2)
