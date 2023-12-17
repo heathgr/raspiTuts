@@ -28,6 +28,7 @@ lastKeyPressedValue = None
 
 while True:
     keyPressedValue = None
+    isPressed = 0
 
     for rid, row in enumerate(rows):
         for cid, column in enumerate(columns):
@@ -36,7 +37,7 @@ while True:
             column.off()
             if isPressed:
                 keyPressedValue = keypadValues[(rid * 4) + cid]
-    if keyPressedValue and lastKeyPressedValue != keyPressedValue:
+    if not isPressed and keyPressedValue and lastKeyPressedValue != keyPressedValue:
         print(f"key: {keyPressedValue}")
         lastKeyPressedValue = keyPressedValue
     sleep(0.1)
