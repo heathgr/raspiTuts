@@ -17,15 +17,19 @@ rows = [
     InputDevice(5)
 ]
 
-while True:
-    columnValue = None
-    rowValue = None
+keypadValues = [
+    '1', '2', '3', 'A',
+    '4', '5', '6', 'B',
+    '7', '8', '9', 'C',
+    '*', '0', '#', 'D',
+]
 
+while True:
     for rid, row in enumerate(rows):
         for cid, column in enumerate(columns):
             column.on()
             isPressed = row.value
             column.off()
             if isPressed:
-                print(f"row: {rid} column: {cid}")
+                print(f"key: {keypadValues[(rid * 4) + cid]}")
     sleep(0.2)
