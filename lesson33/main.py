@@ -4,6 +4,11 @@ from keypad import Keypad
 
 myKeypad = Keypad()
 
+keypadInput = ""
+
 while True:
     keypressed = myKeypad.input()
-    print(f"key pressed: {keypressed}")
+    if keypressed == "D":
+        print(f"Input code: {keypadInput}")
+    if keypressed != "D":
+        keypadInput += keypressed

@@ -52,7 +52,6 @@ class Keypad:
                         self.buzzer.play(self.keypadTones[valueIndex])
                         wasPressed = 1
             if not wasPressed and keyPressedValue:
-                print(f"key: {keyPressedValue}")
                 self.buzzer.stop()
                 return keyPressedValue
             sleep(0.01)
