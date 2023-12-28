@@ -13,12 +13,12 @@ class Keypad:
     ]
 
     def __init__(self, columPins=[21, 20, 16, 12], rowPins=[19, 13, 6, 5], buzzerPin=26):
+        self.onChange = None
         self.__columns = map(lambda x: OutputDevice(x), columPins)
         self.__rows = map(lambda x: InputDevice(x), rowPins)
         self.__buzzer = TonalBuzzer(buzzerPin)
         self.__monitorProcess = Thread(target=self.monitor)
         self.__monitorProcess.start()
-        self.onChange = None
 
     def monitor(self):
         while True:
