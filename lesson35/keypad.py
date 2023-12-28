@@ -27,8 +27,14 @@ class Keypad:
             InputDevice(rowPins[3]),
         ]
         self.__buzzer = TonalBuzzer(buzzerPin)
-        self.__monitorProcess = Thread(target=self.input)
+        self.__monitorProcess = Thread(target=self.monitor)
         self.__monitorProcess.start()
+
+    def monitor(self):
+        while True:
+            keypadInput = self.input()
+            if self.onChange:
+                self.onChange(keypadInput)
 
     def input(self):
         keyPressedValue = None
@@ -46,7 +52,7 @@ class Keypad:
                         keyPressedValue = self.keypadValues[valueIndex]
                         self.__buzzer.play(Tone(500))
                         wasPressed = 1
-            if not wasPressed and keyPressedValue and self.onChange:
+            if not wasPressed and keyPressedValue:
                 self.__buzzer.stop()
-                self.onChange(keyPressedValue)
+                return keyPressedValue
             sleep(0.01)
