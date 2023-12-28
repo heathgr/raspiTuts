@@ -22,7 +22,7 @@ class Keypad:
 
     def monitor(self):
         while True:
-            keypadInput = self.input
+            keypadInput = self.input()
             if self.onChange:
                 self.onChange(keypadInput)
 
