@@ -14,8 +14,18 @@ class Keypad:
 
     def __init__(self, columPins=[21, 20, 16, 12], rowPins=[19, 13, 6, 5], buzzerPin=26):
         self.onChange = None
-        self.__columns = map(lambda x: OutputDevice(x), columPins)
-        self.__rows = map(lambda x: InputDevice(x), rowPins)
+        self.__columns = [
+            OutputDevice(columPins[0]),
+            OutputDevice(columPins[1]),
+            OutputDevice(columPins[2]),
+            OutputDevice(columPins[3]),
+        ]
+        self.__rows = [
+            InputDevice(rowPins[0]),
+            InputDevice(rowPins[1]),
+            InputDevice(rowPins[2]),
+            InputDevice(rowPins[3]),
+        ]
         self.__buzzer = TonalBuzzer(buzzerPin)
         self.__monitorProcess = Thread(target=self.monitor)
         self.__monitorProcess.start()
