@@ -31,6 +31,7 @@ class Display:
         if appMode == AppModes.REQUEST_DISARM:
             LCD.write(0, 0, f"Enter password:{armedStatus}")
             LCD.write(0, 1, maskInput(state["keypadInput"]))
+            return
 
         if appMode == AppModes.DISARMED:
             LCD.write(0, 0, f"Disarmed       {armedStatus}")

@@ -20,7 +20,7 @@ myDisplay = Display()
 
 
 def onKeypadInput(value):
-    appMode = appState["appMode"]
+    appMode = appState.state["appMode"]
 
     if value == "A":
         appState.update({
@@ -43,8 +43,8 @@ def onKeypadInput(value):
         return
     # TODO use a regex instead of isnumeric so the password can contain # and * characters
     elif value.isnumeric():
-        keypadInput = appState["keypadInput"]
-        appMode = appState["appMode"]
+        keypadInput = appState.state["keypadInput"]
+        appMode = appState.state["appMode"]
 
         if len(keypadInput) == 4:
             print(f"veryify password: {keypadInput}")
