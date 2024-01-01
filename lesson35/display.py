@@ -1,4 +1,4 @@
-# import LCD1602 as LCD
+import LCD1602 as LCD
 from appModes import AppModes
 
 
