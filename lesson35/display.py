@@ -1,11 +1,11 @@
-import LCD1602 as LCD
+# import LCD1602 as LCD
 from appModes import AppModes
 
 
 def maskInput(keypadInput):
     displayOutput = list(keypadInput)
 
-    for i in range(len(displayOutput) - 2):
+    for i in range(len(displayOutput) - 1):
         displayOutput[i] = "*"
 
     return "".join(displayOutput).ljust(16)
