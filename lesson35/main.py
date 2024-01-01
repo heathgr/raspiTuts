@@ -51,12 +51,18 @@ def onKeypadInput(value):
         if len(keypadInput) == 4:
             print(f"veryify password: {keypadInput}")
             if appMode == AppModes.REQUEST_DISARM:
-                if keypadInput == appState["password"]:
+                if keypadInput == appState.state["password"]:
                     appState.update({
                         "appMode": AppModes.DISARMED,
                         "isArmed": False,
                         "keypadInput": "",
                     })
+                    return
+                else:
+                    appState.update({
+                        "appMode": AppModes.INCORRECT_PASSWORD
+                    })
+                    return
         else:
             appState.update({
                 "keypadInput": keypadInput
