@@ -46,7 +46,7 @@ def onKeypadInput(value):
         keypadInput = appState.state["keypadInput"]
         appMode = appState.state["appMode"]
 
-        keypadInput = keypadInput + "value"
+        keypadInput = keypadInput + value
 
         if len(keypadInput) == 4:
             print(f"veryify password: {keypadInput}")
