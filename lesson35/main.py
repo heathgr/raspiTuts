@@ -46,6 +46,8 @@ def onKeypadInput(value):
         keypadInput = appState.state["keypadInput"]
         appMode = appState.state["appMode"]
 
+        keypadInput = keypadInput + "value"
+
         if len(keypadInput) == 4:
             print(f"veryify password: {keypadInput}")
             if appMode == AppModes.REQUEST_DISARM:
@@ -55,6 +57,10 @@ def onKeypadInput(value):
                         "isArmed": False,
                         "keypadInput": "",
                     })
+        else:
+            appState.update({
+                "keypadInput": keypadInput
+            })
 
 
 myDisplay.subscribe(appState)
