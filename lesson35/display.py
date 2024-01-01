@@ -3,12 +3,12 @@ from appModes import AppModes
 
 
 def maskInput(keypadInput):
-    displayStr = keypadInput
+    displayOutput = list(keypadInput)
 
-    for i in range(len(displayStr) - 2):
-        displayStr[i] = "*"
+    for i in range(len(displayOutput) - 2):
+        displayOutput[i] = "*"
 
-    return displayStr.ljust(16)
+    return "".join(displayOutput).ljust(16)
 
 
 class Display:
